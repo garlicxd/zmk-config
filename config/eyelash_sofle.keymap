@@ -34,7 +34,67 @@
     trigger-period-ms = <16>;
 };
 
+#define QUICK_TAP_MS 175
+&sk {
+    release-after-ms = <900>;
+    quick-release;
+};
+&sl { // Allow sticky mods to chord across sticky layers.
+    ignore-modifiers;
+};
+&lt {
+    flavor = "balanced";
+    tapping-term-ms = <200>;
+    quick-tap-ms = <QUICK_TAP_MS>;
+};
+&mt {
+    flavor = "tap-preferred";
+    tapping-term-ms = <220>;
+    quick-tap-ms = <220>;
+    hold-trigger-key-positions = <0>;
+};
+&caps_word {
+    continue-list = <UNDERSCORE MINUS>;
+};
+&key_repeat {
+    usage-pages = <HID_USAGE_KEY HID_USAGE_CONSUMER>;
+};
+
 &soft_off { hold-time-ms = <2000>; };
+
+// Hardcoded, on updating the keymap, the sides have to be adjusted accordingly
+#define LEFT_CHARS B Y O U Q C I E A Z
+#define LEFT_SYMBS SLASH BACKSLASH MINUS UNDERSCORE COMMA ASTERISK DOT DOUBLE_QUOTES CARET DOLLAR AMPERSAND SEMICOLON HASH AT_SIGN QUESTION PIPE EXCLAMATION PERCENT EQUAL ESCAPE
+#define RIGHT_CHARS J L D W V K H T N S X M G P F
+#define RIGHT_SYMBS TILDE COLON LEFT_BRACKET LESS_THAN SINGLE_QUOTE GRAVE PLUS LEFT_PARENTHESIS LEFT_BRACE RIGHT_BRACKET GREATER_THAN RIGHT_PARENTHESIS RIGHT_BRACE
+#define NUM_CHARS N0 N1 N2 N3 N4 N5 N6 N7 N8 N9
+#define ADAPTIVE_RESET 1200
+#define COMBO_TERM_FAST 30
+#define COMBO_TERM_SLOW 250
+#define COMBO_IDLE_FAST 30
+#define COMBO_IDLE_SLOW 150
+#define SHIFT_MORPH(NAME, BINDING1, BINDING2) \
+    ZMK_MOD_MORPH(NAME, bindings = <BINDING1>, <BINDING2>; mods = <(MOD_LSFT|MOD_RSFT)>;)
+#define SHIFT_MORPH_COMBO(NAME, BINDING1, BINDING2, POSITION) \
+    SHIFT_MORPH(NAME##_morph, BINDING1, BINDING2) \
+    ZMK_COMBO(NAME, &NAME##_morph, POSITION, DEFAULT NAV_TXT, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+
+#define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS)                                  \
+    ZMK_HOLD_TAP( NAME, bindings = <HOLD>, <TAP>; flavor = "balanced";          \
+                    tapping-term-ms = <200>; quick-tap-ms = <QUICK_TAP_MS>;     \
+                    require-prior-idle-ms = <150>;                              \
+                    hold-trigger-key-positions = <TRIGGER_POS>;                 \
+                    hold-trigger-on-release;                                    \
+                )
+MAKE_HRM(hmt, &mo, &kp, KEYS_R KEYS_L KEYS_T) // Tap mod, hold key
+MAKE_HRM(hmt, &mo, &kp, KEYS_R KEYS_L KEYS_T) // Tap mod, hold key
+
+#define RUNE_L &hm_rune_l LSHIFT 0
+    ZMK_MOD_MORPH(rune_l, bindings = <&sk LSHIFT>, <&arc_left>; mods = <(MOD_LSFT|MOD_RSFT)>;)
+    MAKE_HRM(hm_rune_l, &kp, &rune_l, KEYS_R KEYS_L KEYS_T_R) // Tap mod, hold runic left
+    ZMK_ADAPTIVE_KEY(arc_left, bindings = <&key_repeat>;
+        spc_sft {bindings = <&sk LSHIFT>; trigger-keys = <SPACE>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+    )
 
 / {
     scroll_encoder: scroll_encoder { compatible = "zmk,behavior-sensor-rotate"; #sensor-binding-cells = <0>;
