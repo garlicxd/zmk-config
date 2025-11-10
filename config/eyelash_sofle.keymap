@@ -16,7 +16,7 @@
 #include "eyelash_sofle_keydefs.dtsi" // Extra key definitions following urob's setup
 
 #define L_DEF 0
-#define L_OPT 5
+#define L_OPT 7
 
 &mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
 
