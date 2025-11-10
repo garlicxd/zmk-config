@@ -10,23 +10,23 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: v3.5
+      revision: main
       import: app/west.yml
 
     - name: zmk-helpers
       remote: urob
-      revision: v3.5
+      revision: main
     - name: zmk-auto-layer
       remote: urob
-      revision: v3.5
+      revision: main
     - name: zmk-leader-key
       remote: urob
-      revision: v3.5
+      revision: main
     - name: zmk-adaptive-key
       remote: urob
-      revision: v3.5
+      revision: main
 
-        # Apply patch to fix child nodes issue
+    # Apply patch to fix child nodes issue
     - name: zephyr
       remote: urob
       revision: v3.5.0+zmk-fixes
