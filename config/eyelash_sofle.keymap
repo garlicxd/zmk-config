@@ -16,7 +16,7 @@
 #include "eyelash_sofle_keydefs.dtsi" // Extra key definitions following urob's setup
 
 #define L_DEF 0
-
+#define L_OPT 5
 
 &mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
 
@@ -184,16 +184,19 @@ MAKE_HRM(hmt, &mo, &kp, KEYS_R KEYS_L KEYS_T) // Tap mod, hold key
          display-name = "layer4";
             sensor-bindings = <&scroll_encoder>;
         };
-                layer_5 {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-            >;
-         display-name = "layer5";
-            sensor-bindings = <&scroll_encoder>;
-        };
+
+        L_OPT { sensor-bindings = <&scroll_encoder>; display-name = "OPTIONS"; bindings = <
+//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮        ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+    &trans        &trans        &trans        &trans        &trans        &trans        &trans   &trans        &trans        &trans        &trans        &trans        &trans
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤        ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &trans        &trans        &trans        &trans        &trans        &trans        &trans   &trans        &trans        &trans        &trans        &trans        &trans
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤        ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &trans        &bt BT_SEL 3  &bt BT_SEL 2  &bt BT_SEL 1  &bt BT_SEL 0  &sys_reset    &trans   &sys_reset    &trans        &trans        &trans        &trans        &trans
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤        ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &trans       &bt BT_CLR_ALL &bt BT_CLR    &out OUT_USB  &out OUT_BLE  &bootloader   &trans   &bootloader   &trans        &trans        &trans        &trans        &trans
+//╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤        ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────╯
+    &trans        &trans        &trans        &trans        &trans        &trans        &trans   &trans        &trans        &trans        &trans        &trans
+//              ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯        ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
+        >;};
     };
 };
