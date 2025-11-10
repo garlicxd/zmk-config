@@ -16,6 +16,7 @@
 #include "eyelash_sofle_keydefs.dtsi" // Extra key definitions following urob's setup
 
 #define L_DEF 0
+#define L_OPT 7
 
 
 &mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
@@ -118,16 +119,17 @@ MAKE_HRM(hmt, &mo, &kp, KEYS_R KEYS_L KEYS_T) // Tap mod, hold key
 
         L_DEF {
             bindings = <
+            // grave, bracket1, bracket2, ', backslash
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮          ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    &kp ESC       &kp N1        &kp N2        &kp N3        &kp N4        &kp N5      &kp UP_ARROW &kp N6        &kp N7        &kp N8        &kp N9        &kp N0
+    &kp N1        &kp N2        &kp N3        &kp N4        &kp N5        &kp N6     &kp UP_ARROW  &kp N7        &kp N8        &kp N9        &kp N0        &kp MINUS     &kp EQUAL
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &kp TAB       &kp BSPC      &kp Q         &kp W         &kp E         &kp R      &kp DOWN_ARROW &kp T        &kp Y         &kp U         &kp I         &kp O        &kp P
+    &kp ESC       &kp TAB       &kp Q         &kp W         &kp E         &kp R      &kp DOWN_ARROW &kp T        &kp Y         &kp U         &kp I         &kp O         &kp P
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &kp ENTER     &kp BSLH      &kp A         &kp S         &kp D         &kp F      &kp LEFT_ARROW &kp G        &kp H         &kp J         &kp K         &kp L         &kp SEMI
+    &kp DELETE    &kp LSHFT     &kp A         &kp S         &kp D         &kp F      &kp LEFT_ARROW &kp G        &kp H         &kp J         &kp K         &kp L         &kp SEMI
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &kp APOS      &kp LSHFT     &kp Z         &kp X         &kp C         &kp V      &kp RIGHT_ARROW &kp B       &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH
+    &kp BSPC      &kp LCTRL     &kp Z         &kp X         &kp C         &kp V      &kp RIGHT_ARROW &kp B       &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH
 //╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────╯
-    &kp C_MUTE    &kp LCTRL     &kp LEFT_GUI  &kp LEFT_ALT  RUNE_L        &kp SPACE     &kp ENTER  &kp SPACE     &kp ENTER     &mo 2         &kp RSHFT     &kp DELETE
+    &kp C_MUTE    &mo L_OPT     &kp LEFT_GUI  &kp LEFT_ALT  &kp SPACE     RUNE_L       &kp ENTER   &kp SPACE     &kp ENTER     &mo 2         &kp RSHFT     &kp DELETE
 //              ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯          ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
             >;
 
@@ -185,5 +187,19 @@ MAKE_HRM(hmt, &mo, &kp, KEYS_R KEYS_L KEYS_T) // Tap mod, hold key
          display-name = "layer4";
             sensor-bindings = <&scroll_encoder>;
         };
+
+        L_OPT { sensor-bindings = <&volume_encoder>; display-name = "OPTIONS"; bindings = <
+//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮        ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+    &trans        &trans        &trans        &trans        &trans        &trans        &trans   &trans        &trans        &trans        &trans        &trans        &trans
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤        ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &trans        &trans        &trans        &trans        &trans        &trans        &trans   &trans        &trans        &trans        &trans        &trans        &trans
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤        ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &trans        &bt BT_SEL 3  &bt BT_SEL 2  &bt BT_SEL 1  &bt BT_SEL 0  &sys_reset    &trans   &sys_reset    &trans        &trans        &trans        &trans        &trans
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤        ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &trans       &bt BT_CLR_ALL &bt BT_CLR    &out OUT_USB  &out OUT_BLE  &bootloader   &trans   &bootloader   &trans        &trans        &trans        &trans        &trans
+//╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤        ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────╯
+    &trans        &trans        &trans        &trans        &trans        &trans        &trans   &trans        &trans        &trans        &trans        &trans
+//              ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯        ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
+        >;};
     };
 };
