@@ -87,7 +87,6 @@
                     hold-trigger-on-release;                                    \
                 )
 MAKE_HRM(hmt, &mo, &kp, KEYS_R KEYS_L KEYS_T) // Tap mod, hold key
-MAKE_HRM(hmt, &mo, &kp, KEYS_R KEYS_L KEYS_T) // Tap mod, hold key
 
 #define RUNE_L &hm_rune_l LSHIFT 0
     ZMK_MOD_MORPH(rune_l, bindings = <&sk LSHIFT>, <&arc_left>; mods = <(MOD_LSFT|MOD_RSFT)>;)
@@ -183,6 +182,17 @@ MAKE_HRM(hmt, &mo, &kp, KEYS_R KEYS_L KEYS_T) // Tap mod, hold key
 &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
             >;
          display-name = "layer4";
+            sensor-bindings = <&scroll_encoder>;
+        };
+                layer_5 {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+            >;
+         display-name = "layer5";
             sensor-bindings = <&scroll_encoder>;
         };
     };
