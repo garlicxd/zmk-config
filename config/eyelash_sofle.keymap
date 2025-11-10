@@ -126,7 +126,7 @@ MAKE_HRM(hmt, &mo, &kp, KEYS_R KEYS_L KEYS_T) // Tap mod, hold key
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     &kp APOS      &kp LSHFT     &kp Z         &kp X         &kp C         &kp V      &kp RIGHT_ARROW &kp B       &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH
 //╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────╯
-    &kp C_MUTE    &kp LCTRL     &kp LEFT_GUI  &kp LEFT_ALT  RUNE_L        &kp SPACE     &kp ENTER  &kp SPACE     &kp ENTER     &mo 2         &kp RSHFT     &kp DELETE
+    &kp C_MUTE    &mo L_OPT     &kp LEFT_GUI  &kp LEFT_ALT  RUNE_L        &kp SPACE     &kp ENTER  &kp SPACE     &kp ENTER     &mo 2         &kp RSHFT     &kp DELETE
 //              ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯          ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
             >;
 
