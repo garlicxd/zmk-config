@@ -75,9 +75,6 @@
 #define COMBO_IDLE_SLOW 150
 #define SHIFT_MORPH(NAME, BINDING1, BINDING2) \
     ZMK_MOD_MORPH(NAME, bindings = <BINDING1>, <BINDING2>; mods = <(MOD_LSFT|MOD_RSFT)>;)
-#define SHIFT_MORPH_COMBO(NAME, BINDING1, BINDING2, POSITION) \
-    SHIFT_MORPH(NAME##_morph, BINDING1, BINDING2) \
-    ZMK_COMBO(NAME, &NAME##_morph, POSITION, DEFAULT NAV_TXT, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 
 #define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS)                                  \
     ZMK_HOLD_TAP( NAME, bindings = <HOLD>, <TAP>; flavor = "balanced";          \
@@ -101,6 +98,8 @@ MAKE_HRM(hmt, &mo, &kp, KEYS_R KEYS_L KEYS_T) // Tap mod, hold key
     ZMK_ADAPTIVE_KEY(arc_right, bindings = <&key_repeat>;
         spc_sft {bindings = <&sk RSHIFT>; trigger-keys = <SPACE>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
     )
+
+ZMK_COMBO(grave_combo, &kp GRAVE, RT3 RM3, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 
 / {
     scroll_encoder: scroll_encoder { compatible = "zmk,behavior-sensor-rotate"; #sensor-binding-cells = <0>;
@@ -127,13 +126,13 @@ MAKE_HRM(hmt, &mo, &kp, KEYS_R KEYS_L KEYS_T) // Tap mod, hold key
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮          ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
     &kp N1        &kp N2        &kp N3        &kp N4        &kp N5        &kp N6      &kp UP_ARROW &kp N7        &kp N8        &kp N9        &kp N0        &kp MINUS     &kp EQUAL
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &kp ESC       &kp TAB       &kp Q         &kp W         &kp E         &kp R      &kp DOWN_ARROW &kp T        &kp Y         &kp U         &kp I         &kp O         &kp P
+    &kp BSPC      &kp TAB       &kp Q         &kp W         &kp E         &kp R      &kp DOWN_ARROW &kp T        &kp Y         &kp U         &kp I         &kp O         &kp P
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &kp DEL       &kp LSHFT     &kp A         &kp S         &kp D         &kp F      &kp LEFT_ARROW &kp G        &kp H         &kp J         &kp K         &kp L         &kp SEMI
+    &kp DEL       &kp ESC       &kp A         &kp S         &kp D         &kp F      &kp LEFT_ARROW &kp G        &kp H         &kp J         &kp K         &kp L         &kp SEMI
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &kp BSPC      &kp LCTRL     &kp Z         &kp X         &kp C         &kp V      &kp RIGHT_ARROW &kp B       &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH
+    &kp ENTER     &kp LCTRL     &kp Z         &kp X         &kp C         &kp V      &kp RIGHT_ARROW &kp B       &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH
 //╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────╯
-    &kp C_MUTE    &mo L_OPT     &kp LEFT_GUI  &kp LEFT_ALT  &kp SPACE     RUNE_L       &kp ENTER   RUNE_R        &kp SPACE     &kp RALT      &kp RSHFT     &kp DELETE
+    &kp C_MUTE    &mo L_OPT     &kp LEFT_GUI  &kp LEFT_ALT  RUNE_L        &kp SPACE    &kp ENTER   &kp SPACE     RUNE_R        &kp RALT      &kp RSHFT     &kp DELETE
 //              ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯          ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
             >;
 
