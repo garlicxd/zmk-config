@@ -99,6 +99,9 @@ MAKE_HRM(hmt, &mo, &kp, KEYS_R KEYS_L KEYS_T) // Tap mod, hold key
         spc_sft {bindings = <&sk RSHIFT>; trigger-keys = <SPACE>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
     )
 
+#define STICKY_L &sticky_l LSHIFT LSHIFT
+    MAKE_HRM(sticky_l, &sk, &kp, KEYS_L KEYS_R KEYS_T_L)
+
 ZMK_COMBO(grave_combo, &kp GRAVE, RT3 RM3, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 
 / {
@@ -132,7 +135,7 @@ ZMK_COMBO(grave_combo, &kp GRAVE, RT3 RM3, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FA
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     &kp ENTER     &kp LCTRL     &kp Z         &kp X         &kp C         &kp V      &kp RIGHT_ARROW &kp B       &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH
 //╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────╯
-    &kp C_MUTE    &mo L_OPT     &kp LEFT_GUI  &kp LEFT_ALT  RUNE_L        &kp SPACE    &kp ENTER   &kp SPACE     RUNE_R        &kp RALT      &kp RSHFT     &kp DELETE
+    &kp C_MUTE    &mo L_OPT     &kp LEFT_GUI  &kp LEFT_ALT  STICKY_L        &kp SPACE    &kp ENTER   &kp SPACE     RUNE_R        &kp RALT      &kp RSHFT     &kp DELETE
 //              ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯          ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
             >;
 
