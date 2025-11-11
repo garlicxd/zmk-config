@@ -16,7 +16,8 @@
 #include "eyelash_sofle_keydefs.dtsi" // Extra key definitions following urob's setup
 
 #define L_DEF 0
-#define L_OPT 7
+#define L_MOU 1
+#define L_OPT 2
 
 &mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
 
@@ -106,9 +107,34 @@ MAKE_HRM(hmt, &mo, &kp, KEYS_R KEYS_L KEYS_T) // Tap mod, hold key
     MAKE_HRM(sticky_r, &sk, &kp, KEYS_L KEYS_T_L)
 
 // function combos
-ZMK_COMBO(f1_combo, &kp F1, LN5 LT5, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(f1_combo,  &kp F1,  LN5 LT5, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(f2_combo,  &kp F2,  LN4 LT4, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(f3_combo,  &kp F3,  LN3 LT3, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(f4_combo,  &kp F4,  LN2 LT2, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(f5_combo,  &kp F5,  LN1 LT1, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(f6_combo,  &kp F6,  LN0 LT0, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(f7_combo,  &kp F7,  RN0 RT0, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(f8_combo,  &kp F8,  RN1 RT1, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(f9_combo,  &kp F9,  RN2 RT2, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(f10_combo, &kp F10, RN3 RT3, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(f11_combo, &kp F11, RN4 RT4, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(f12_combo, &kp F12, RN5 RT5, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 
-ZMK_COMBO(grave_combo, &kp GRAVE, RT3 RM3, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(lbkt_combo,   &kp LBKT,  LT3 LM3, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(rbkt_combo,   &kp RBKT,  LT2 LM2, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(apos_combo,   &kp APOS,  LT1 LM1, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(grave_combo,  &kp GRAVE, LM3 LB3, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(bslh_combo,   &kp BSLH,  LM2 LB2, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+
+ZMK_COMBO(left_combo,  &kp LEFT_ARROW,  RT1 RM1, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(down_combo,  &kp DOWN_ARROW,  RT2 RM2, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(up_combo,    &kp UP_ARROW,    RT3 RM3, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(right_combo, &kp RIGHT_ARROW, RT4 RM4, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+
+ZMK_COMBO(home_combo,  &kp HOME,        RM1 RB1, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(pgdn_combo,  &kp PGDN,        RM2 RB2, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(pgup_combo,  &kp PGUP,        RM3 RB3, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(end_combo,   &kp END,         RM4 RB4, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 
 / {
     scroll_encoder: scroll_encoder { compatible = "zmk,behavior-sensor-rotate"; #sensor-binding-cells = <0>;
@@ -130,37 +156,52 @@ ZMK_COMBO(grave_combo, &kp GRAVE, RT3 RM3, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FA
     keymap {
         compatible = "zmk,keymap";
 
-        L_DEF {
-            bindings = < // repeat, `, ', ENTER, [], \
+        L_DEF { sensor-bindings = <&scroll_encoder>; display-name = "Default Layer"; bindings = < 
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮          ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
     &kp N1        &kp N2        &kp N3        &kp N4        &kp N5        &kp N6      &kp UP_ARROW &kp N7        &kp N8        &kp N9        &kp N0        &kp MINUS     &kp EQUAL
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &kp BSPC      &kp TAB       &kp Q         &kp W         &kp E         &kp R      &kp DOWN_ARROW &kp T        &kp Y         &kp U         &kp I         &kp O         &kp P
+    &kp DEL       &kp TAB       &kp Q         &kp W         &kp E         &kp R      &kp DOWN_ARROW &kp T        &kp Y         &kp U         &kp I         &kp O         &kp P
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &kp DEL       &kp LCTRL     &kp A         &kp S         &kp D         &kp F      &kp LEFT_ARROW &kp G        &kp H         &kp J         &kp K         &kp L         &kp SEMI
+    &kp BSPC      &kp LCTRL     &kp A         &kp S         &kp D         &kp F      &kp LEFT_ARROW &kp G        &kp H         &kp J         &kp K         &kp L         &kp SEMI
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     &kp ENTER     &kp ESC       &kp Z         &kp X         &kp C         &kp V      &kp RIGHT_ARROW &kp B       &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH
 //╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────╯
-    &kp C_MUTE    &mo L_OPT     &kp LGUI      &kp LALT      &kp LSHIFT    &kp SPACE    &kp ENTER   &kp SPACE     &kp RSHIFT    &kp RALT      &kp RSHFT     &kp DELETE
+    &kp C_MUTE    &mo L_OPT     &kp LGUI      &kp LALT      &kp LSHIFT    &kp SPACE    &kp ENTER   &kp SPACE     &kp RSHIFT    &kp RALT      &kp RSHFT     &mo L_MOU
 //              ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯          ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
             >;
-
-            sensor-bindings = <&scroll_encoder>;
-            display-name = "Default Layer";
         };
 
-        layer_1 {
+        L_MOU {
             bindings = <
-&kp GRAVE   &kp F1           &kp F2          &kp F3           &kp F4           &kp F5             &mmv MOVE_UP     &kp F6           &kp F7           &kp F8      &kp F9     &kp F10           &trans
-&trans      &kp GRAVE        &mkp LCLK       &mkp MCLK        &mkp RCLK        &mkp MB4           &mmv MOVE_DOWN   &kp PG_UP        &kp END          &kp UP      &kp HOME   &kp MINUS         &kp EQUAL
-&trans      &kp TILDE        &trans          &trans           &trans           &mkp MB5           &mmv MOVE_LEFT   &kp PG_DN        &kp LEFT         &kp DOWN    &kp RIGHT  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
-&trans      &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &rgb_ug RGB_EFF  &rgb_ug RGB_EFR  &rgb_ug RGB_SPI    &mmv MOVE_RIGHT  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &kp INSERT  &kp F11    &kp F12           &trans
-&kp C_MUTE  &trans           &trans          &trans           &trans           &trans             &mkp LCLK        &trans           &trans           &trans      &trans     &trans
+//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮        ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+    &trans        &trans        &trans        &trans        &trans        &trans        &trans   &trans        &trans        &trans        &trans        &trans        &trans
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤        ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &trans        &trans        &trans        &trans        &trans        &trans        &trans   &mkp MCLK     &mkp LCLK     &mkp RCLK     &mkp MB4      &mkp MB5      &trans
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤        ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &trans        &trans        &trans        &trans        &trans        &trans        &trans   &trans     &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT &trans
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤        ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &trans        &trans        &trans        &trans        &trans        &trans        &trans   &trans        &trans        &trans        &trans        &trans        &trans
+//╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤        ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────╯
+    &trans        &trans        &trans        &trans        &trans        &trans        &trans   &trans        &trans        &trans        &trans        &trans
+//              ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯        ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
             >;
 
-            display-name = "layer1";
+            display-name = "Mouse Layer";
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;
         };
+
+//         L_MOU {
+//             bindings = <
+// &kp GRAVE   &kp F1           &kp F2          &kp F3           &kp F4           &kp F5             &mmv MOVE_UP     &kp F6           &kp F7           &kp F8      &kp F9     &kp F10           &trans
+// &trans      &kp GRAVE        &mkp LCLK       &mkp MCLK        &mkp RCLK        &mkp MB4           &mmv MOVE_DOWN   &kp PG_UP        &kp END          &kp UP      &kp HOME   &kp MINUS         &kp EQUAL
+// &trans      &kp TILDE        &trans          &trans           &trans           &mkp MB5           &mmv MOVE_LEFT   &kp PG_DN        &kp LEFT         &kp DOWN    &kp RIGHT  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
+// &trans      &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &rgb_ug RGB_EFF  &rgb_ug RGB_EFR  &rgb_ug RGB_SPI    &mmv MOVE_RIGHT  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &kp INSERT  &kp F11    &kp F12           &trans
+// &kp C_MUTE  &trans           &trans          &trans           &trans           &trans             &mkp LCLK        &trans           &trans           &trans      &trans     &trans
+//             >;
+
+//             display-name = "layer1";
+//             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;
+//         };
 
         L_OPT { sensor-bindings = <&scroll_encoder>; display-name = "OPTIONS"; bindings = <
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮        ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
