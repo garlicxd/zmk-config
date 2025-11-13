@@ -114,7 +114,7 @@ MAKE_HRM(rhrm, &kp, &kp, KEYS_L KEYS_T_L)
 // #define LSFT_XXX &lhrm XXX RSHIFT
 // #define LCTL_ESC &lhrm XXX RSHIFT
 
-#define RSFT_ENT &rhrm ENTER RSFT
+#define RSFT_ENT &rhrm RSFT ENTER
 
 // function combos
 ZMK_COMBO(f1_combo,  &kp F1,  LN5 LT5, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
