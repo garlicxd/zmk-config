@@ -106,6 +106,16 @@ MAKE_HRM(hmt, &mo, &kp, KEYS_R KEYS_L KEYS_T) // Tap mod, hold key
 #define STICKY_R &sticky_r RSHIFT RSHIFT
     MAKE_HRM(sticky_r, &sk, &kp, KEYS_L KEYS_T_L)
 
+
+
+MAKE_HRM(lhrm, &kp, &kp, KEYS_L KEYS_T_L)
+MAKE_HRM(rhrm, &kp, &kp, KEYS_L KEYS_T_L)
+
+#define LSFT_XXX &lhrm XXX RSHIFT
+#define LCTL_ESC &lhrm XXX RSHIFT
+
+#define RSFT_ENT &rhrm ENT RSHIFT
+
 // function combos
 ZMK_COMBO(f1_combo,  &kp F1,  LN5 LT5, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 ZMK_COMBO(f2_combo,  &kp F2,  LN4 LT4, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
@@ -123,9 +133,10 @@ ZMK_COMBO(f12_combo, &kp F12, RN5 RT5, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 ZMK_COMBO(lbkt_combo,   &kp LBKT,  LT3 LM3, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 ZMK_COMBO(rbkt_combo,   &kp RBKT,  LT2 LM2, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 ZMK_COMBO(apos_combo,   &kp APOS,  LT1 LM1, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(bslh_combo,   &kp BSLH,  LM4 LB4, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 ZMK_COMBO(pscrn_combo,  &kp PSCRN, LM3 LB3, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 ZMK_COMBO(grave_combo,  &kp GRAVE, LM2 LB2, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
-ZMK_COMBO(bslh_combo,   &kp BSLH,  LM1 LB1, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(bslh_combo,   &kp EQUAL, LM1 LB1, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 
 ZMK_COMBO(left_combo,  &kp LEFT_ARROW,  RT1 RM1, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 ZMK_COMBO(down_combo,  &kp DOWN_ARROW,  RT2 RM2, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
@@ -161,13 +172,13 @@ ZMK_COMBO(end_combo,   &kp END,         RM4 RB4, L_DEF, COMBO_TERM_SLOW, COMBO_I
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮          ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
     &kp DEL       &kp N1        &kp N2        &kp N3        &kp N4        &kp N5      &kp UP_ARROW &kp N6        &kp N7        &kp N8        &kp N9        &kp N0        &kp BSPC
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &kp TAB       &kp Q         &kp W         &kp E         &kp R         &kp T      &kp DOWN_ARROW &kp ESC      &kp Y         &kp U         &kp I         &kp O         &kp P
+    &kp TAB       &kp Q         &kp W         &kp E         &kp R         &kp T      &kp DOWN_ARROW &kp          &kp Y         &kp U         &kp I         &kp O         &kp P
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &kp LSHIFT    &kp A         &kp S         &kp D         &kp F         &kp G      &kp LEFT_ARROW &kp SEMI     &kp H         &kp J         &kp K         &kp L         &kp RSHFT 
+    &kp LSHIFT    &kp A         &kp S         &kp D         &kp F         &kp G      &kp LEFT_ARROW &kp SEMI     &kp H         &kp J         &kp K         &kp L         RSFT_ENT 
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &kp LCTL      &kp Z         &kp X         &kp C         &kp V         &kp B      &kp RIGHT_ARROW &kp FSLH    &kp N         &kp M         &kp COMMA     &kp DOT       &kp ENTER
+    &kp LCTL      &kp Z         &kp X         &kp C         &kp V         &kp B      &kp RIGHT_ARROW &kp MINUS   &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH
 //╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────╯
-    &kp C_MUTE    &mo L_OPT     &kp LGUI      &kp           &kp LALT      &kp SPACE    &kp ENTER   &kp SPACE     &kp           &kp RALT      &kp           &mo L_MOU
+    &kp C_MUTE    &mo L_OPT     &kp LGUI      &kp ESC       &kp LALT      &kp SPACE    &kp ENTER   &kp SPACE     &kp RALT      &kp           &kp           &mo L_MOU
 //              ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯          ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
             >;
         };
