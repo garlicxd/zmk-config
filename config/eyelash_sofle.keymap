@@ -178,7 +178,7 @@ ZMK_COMBO(end_combo,   &kp END,         RM4 RB4, L_DEF, COMBO_TERM_SLOW, COMBO_I
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     &kp LCTL      &kp Z         &kp X         &kp C         &kp V         &kp B      &kp RIGHT_ARROW &kp MINUS   &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH
 //╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────╯
-    &kp C_MUTE    &mo L_OPT     &kp LGUI      &kp ESC       &kp LALT      &kp SPACE    &kp ENTER   &kp SPACE     &kp RALT      &kp           &kp           &mo L_MOU
+    &kp C_MUTE    &mo L_OPT     &kp LALT      &kp ESC       &kp LGUI      &kp SPACE    &kp ENTER   &kp SPACE     &kp RALT      &kp           &kp           &mo L_MOU
 //              ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯          ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
             >;
         };
