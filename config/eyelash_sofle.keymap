@@ -16,8 +16,8 @@
 #include "eyelash_sofle_keydefs.dtsi" // Extra key definitions following urob's setup
 
 #define L_DEF 0
-#define L_OPT 7
-
+#define L_MOU 1
+#define L_OPT 2
 
 &mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
 
@@ -76,9 +76,6 @@
 #define COMBO_IDLE_SLOW 150
 #define SHIFT_MORPH(NAME, BINDING1, BINDING2) \
     ZMK_MOD_MORPH(NAME, bindings = <BINDING1>, <BINDING2>; mods = <(MOD_LSFT|MOD_RSFT)>;)
-#define SHIFT_MORPH_COMBO(NAME, BINDING1, BINDING2, POSITION) \
-    SHIFT_MORPH(NAME##_morph, BINDING1, BINDING2) \
-    ZMK_COMBO(NAME, &NAME##_morph, POSITION, DEFAULT NAV_TXT, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 
 #define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS)                                  \
     ZMK_HOLD_TAP( NAME, bindings = <HOLD>, <TAP>; flavor = "balanced";          \
@@ -95,6 +92,62 @@ MAKE_HRM(hmt, &mo, &kp, KEYS_R KEYS_L KEYS_T) // Tap mod, hold key
     ZMK_ADAPTIVE_KEY(arc_left, bindings = <&key_repeat>;
         spc_sft {bindings = <&sk LSHIFT>; trigger-keys = <SPACE>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
     )
+
+#define RUNE_R &hm_rune_r RSHIFT 0
+    ZMK_MOD_MORPH(rune_r, bindings = <&sk RSHIFT>, <&arc_right>; mods = <(MOD_LSFT|MOD_RSFT)>;)
+    MAKE_HRM(hm_rune_r, &kp, &rune_r, KEYS_L KEYS_R KEYS_T_L) // Tap mod, hold runic right
+    ZMK_ADAPTIVE_KEY(arc_right, bindings = <&key_repeat>;
+        spc_sft {bindings = <&sk RSHIFT>; trigger-keys = <SPACE>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+    )
+
+#define STICKY_L &sticky_l LSHIFT LSHIFT
+    MAKE_HRM(sticky_l, &sk, &kp, KEYS_R KEYS_T_R)
+
+#define STICKY_R &sticky_r RSHIFT RSHIFT
+    MAKE_HRM(sticky_r, &sk, &kp, KEYS_L KEYS_T_L)
+
+
+
+MAKE_HRM(lhrm, &kp, &kp, KEYS_R KEYS_T_R)
+MAKE_HRM(rhrm, &kp, &kp, KEYS_L KEYS_T_L)
+
+// #define LSFT_XXX &lhrm XXX RSHIFT
+// #define LCTL_ESC &lhrm XXX RSHIFT
+
+#define RSFT_ENT &rhrm RSFT ENTER
+
+// function combos
+ZMK_COMBO(f1_combo,  &kp F1,  LN5 LT5, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(f2_combo,  &kp F2,  LN4 LT4, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(f3_combo,  &kp F3,  LN3 LT3, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(f4_combo,  &kp F4,  LN2 LT2, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(f5_combo,  &kp F5,  LN1 LT1, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(f6_combo,  &kp F6,  LN0 LT0, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(f7_combo,  &kp F7,  RN0 RT0, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(f8_combo,  &kp F8,  RN1 RT1, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(f9_combo,  &kp F9,  RN2 RT2, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(f10_combo, &kp F10, RN3 RT3, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(f11_combo, &kp F11, RN4 RT4, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(f12_combo, &kp F12, RN5 RT5, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+
+ZMK_COMBO(lbkt_combo,   &kp LBKT,  LT3 LM3, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(rbkt_combo,   &kp RBKT,  LT2 LM2, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+// ZMK_COMBO(apos_combo,   &kp APOS,  LT1 LM1, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(bslh_combo,   &kp BSLH,  LT1 LM1, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+
+ZMK_COMBO(pscrn_combo,  &kp PSCRN, LM3 LB3, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(grave_combo,  &kp GRAVE, LM2 LB2, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(equal_combo,   &kp EQUAL, LM1 LB1, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+
+ZMK_COMBO(left_combo,  &kp LEFT_ARROW,  RT1 RM1, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(down_combo,  &kp DOWN_ARROW,  RT2 RM2, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(up_combo,    &kp UP_ARROW,    RT3 RM3, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(right_combo, &kp RIGHT_ARROW, RT4 RM4, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+
+ZMK_COMBO(home_combo,  &kp HOME,        RM1 RB1, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(pgdn_combo,  &kp PGDN,        RM2 RB2, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(pgup_combo,  &kp PGUP,        RM3 RB3, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(end_combo,   &kp END,         RM4 RB4, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 
 / {
     scroll_encoder: scroll_encoder { compatible = "zmk,behavior-sensor-rotate"; #sensor-binding-cells = <0>;
@@ -116,78 +169,54 @@ MAKE_HRM(hmt, &mo, &kp, KEYS_R KEYS_L KEYS_T) // Tap mod, hold key
     keymap {
         compatible = "zmk,keymap";
 
-        L_DEF {
-            bindings = <
-            // grave, bracket1, bracket2, ', backslash, repeat
+        L_DEF { sensor-bindings = <&scroll_encoder>; display-name = "Default Layer"; bindings = < 
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮          ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-    &kp N1        &kp N2        &kp N3        &kp N4        &kp N5        &kp N6     &kp UP_ARROW  &kp N7        &kp N8        &kp N9        &kp N0        &kp MINUS     &kp EQUAL
+    &kp DEL       &kp N1        &kp N2        &kp N3        &kp N4        &kp N5      &kp UP_ARROW &kp N6        &kp N7        &kp N8        &kp N9        &kp N0        &kp BSPC
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &kp ESC       &kp TAB       &kp Q         &kp W         &kp E         &kp R      &kp DOWN_ARROW &kp T        &kp Y         &kp U         &kp I         &kp O         &kp P
+    &kp TAB       &kp Q         &kp W         &kp E         &kp R         &kp T      &kp DOWN_ARROW &kp APOS     &kp Y         &kp U         &kp I         &kp O         &kp P
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &kp DELETE    &kp LSHFT     &kp A         &kp S         &kp D         &kp F      &kp LEFT_ARROW &kp G        &kp H         &kp J         &kp K         &kp L         &kp SEMI
+    &kp LSFT      &kp A         &kp S         &kp D         &kp F         &kp G      &kp LEFT_ARROW &kp SEMI     &kp H         &kp J         &kp K         &kp L         RSFT_ENT
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &kp BSPC      &kp LCTRL     &kp Z         &kp X         &kp C         &kp V      &kp RIGHT_ARROW &kp B       &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH
+    &kp LCTL      &kp Z         &kp X         &kp C         &kp V         &kp B      &kp RIGHT_ARROW &kp MINUS   &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH
 //╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────╯
-    &kp C_MUTE    &mo L_OPT     &kp LEFT_GUI  &kp LEFT_ALT  &kp SPACE     RUNE_L       &kp ENTER   &kp SPACE     &kp ENTER     &mo 2         &kp RSHFT     &kp DELETE
+    &kp C_MUTE    &mo L_OPT     &kp LALT      &kp ESC       &kp LGUI      &kp SPACE    &kp ENTER   &kp SPACE     &kp RALT      &caps_word    &kp RSFT      &mo L_MOU
 //              ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯          ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
             >;
-
-            sensor-bindings = <&scroll_encoder>;
-            display-name = "Default Layer";
         };
 
-        layer_1 {
+        L_MOU {
             bindings = <
-&kp GRAVE   &kp F1           &kp F2          &kp F3           &kp F4           &kp F5             &mmv MOVE_UP     &kp F6           &kp F7           &kp F8      &kp F9     &kp F10           &trans
-&trans      &kp GRAVE        &mkp LCLK       &mkp MCLK        &mkp RCLK        &mkp MB4           &mmv MOVE_DOWN   &kp PG_UP        &kp END          &kp UP      &kp HOME   &kp MINUS         &kp EQUAL
-&trans      &kp TILDE        &trans          &trans           &trans           &mkp MB5           &mmv MOVE_LEFT   &kp PG_DN        &kp LEFT         &kp DOWN    &kp RIGHT  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
-&trans      &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &rgb_ug RGB_EFF  &rgb_ug RGB_EFR  &rgb_ug RGB_SPI    &mmv MOVE_RIGHT  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &kp INSERT  &kp F11    &kp F12           &trans
-&kp C_MUTE  &trans           &trans          &trans           &trans           &trans             &mkp LCLK        &trans           &trans           &trans      &trans     &trans
+//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮        ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+    &trans        &trans        &trans        &trans        &trans        &trans        &trans   &trans        &trans        &trans        &trans        &trans        &trans
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤        ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &trans        &trans        &trans        &trans        &trans        &trans        &trans   &mkp MCLK     &mkp LCLK     &mkp RCLK     &mkp MB4      &mkp MB5      &trans
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤        ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &trans        &trans        &trans        &trans        &trans        &trans        &trans   &trans     &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT &trans
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤        ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &trans        &trans        &trans        &trans        &trans        &trans        &trans   &trans        &trans        &trans        &trans        &trans        &trans
+//╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤        ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────╯
+    &trans        &trans        &trans        &trans        &trans        &trans        &trans   &trans        &trans        &trans        &trans        &trans
+//              ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯        ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
             >;
 
-            display-name = "layer1";
+            display-name = "Mouse Layer";
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;
         };
 
-        layer_2 {
-            bindings = <
-&kp TILDE  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &mmv MOVE_UP     &kp F6  &kp F7  &kp F8      &kp F9     &kp F10      &trans
-&trans     &bt BT_CLR    &bt BT_CLR_ALL  &trans        &trans        &trans          &mmv MOVE_DOWN   &trans  &trans  &kp F11     &kp F12    &kp UNDER    &kp PLUS
-&trans     &out OUT_USB  &out OUT_BLE    &trans        &trans        &trans          &mmv MOVE_LEFT   &trans  &trans  &trans      &trans     &kp LBRC     &kp RBRC
-&trans     &sys_reset    &trans          &bootloader   &trans        &trans          &mmv MOVE_RIGHT  &trans  &trans  &sys_reset  &soft_off  &bootloader  &trans
-&trans     &trans        &trans          &trans        &trans        &trans          &mkp LCLK        &trans  &trans  &trans      &trans     &trans
-            >;
+//         L_MOU {
+//             bindings = <
+// &kp GRAVE   &kp F1           &kp F2          &kp F3           &kp F4           &kp F5             &mmv MOVE_UP     &kp F6           &kp F7           &kp F8      &kp F9     &kp F10           &trans
+// &trans      &kp GRAVE        &mkp LCLK       &mkp MCLK        &mkp RCLK        &mkp MB4           &mmv MOVE_DOWN   &kp PG_UP        &kp END          &kp UP      &kp HOME   &kp MINUS         &kp EQUAL
+// &trans      &kp TILDE        &trans          &trans           &trans           &mkp MB5           &mmv MOVE_LEFT   &kp PG_DN        &kp LEFT         &kp DOWN    &kp RIGHT  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
+// &trans      &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &rgb_ug RGB_EFF  &rgb_ug RGB_EFR  &rgb_ug RGB_SPI    &mmv MOVE_RIGHT  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &kp INSERT  &kp F11    &kp F12           &trans
+// &kp C_MUTE  &trans           &trans          &trans           &trans           &trans             &mkp LCLK        &trans           &trans           &trans      &trans     &trans
+//             >;
 
-            display-name = "layer2";
-            sensor-bindings = <&scroll_encoder>;
-        };
+//             display-name = "layer1";
+//             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;
+//         };
 
-        layer_3 {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-            >;
-
-            display-name = "layer3";
-            sensor-bindings = <&scroll_encoder>;
-        };
-
-        layer_4 {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-            >;
-         display-name = "layer4";
-            sensor-bindings = <&scroll_encoder>;
-        };
-
-        L_OPT { sensor-bindings = <&volume_encoder>; display-name = "OPTIONS"; bindings = <
+        L_OPT { sensor-bindings = <&scroll_encoder>; display-name = "OPTIONS"; bindings = <
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮        ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
     &trans        &trans        &trans        &trans        &trans        &trans        &trans   &trans        &trans        &trans        &trans        &trans        &trans
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤        ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
@@ -200,4 +229,5 @@ MAKE_HRM(hmt, &mo, &kp, KEYS_R KEYS_L KEYS_T) // Tap mod, hold key
     &trans        &trans        &trans        &trans        &trans        &trans        &trans   &trans        &trans        &trans        &trans        &trans
 //              ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯        ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
         >;};
+    };
 };
