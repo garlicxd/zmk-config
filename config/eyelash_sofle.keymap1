@@ -1,5 +1,5 @@
-#define ZMK_POINTING_DEFAULT_MOVE_VAL 1200
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 25
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 1200  // 600
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 25   // 10
 
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
@@ -13,7 +13,7 @@
 #define ZMK_HELPER_KEEP_NATIVE 0
 #include "zmk-helpers/helper.h"
 
-#include "eyelash_sofle_keydefs.dtsi"
+#include "eyelash_sofle_keydefs.dtsi" // Extra key definitions following urob's setup
 
 #define L_DEF 0
 #define L_GAME 1
@@ -21,12 +21,13 @@
 #define L_OPT 3
 
 &mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
+
 &msc_input_listener { input-processors = <&zip_scroll_scaler 2 1>; };
 
 &msc {
-    acceleration-exponent = <1>;
-    time-to-max-speed-ms = <100>;
-    delay-ms = <0>;
+    acceleration-exponent = <1>;      // 0
+    time-to-max-speed-ms = <100>;       // 300
+    delay-ms = <0>;                   // 0
 };
 
 &mmv {
@@ -40,7 +41,7 @@
     release-after-ms = <900>;
     quick-release;
 };
-&sl { 
+&sl { // Allow sticky mods to chord across sticky layers.
     ignore-modifiers;
 };
 &lt {
@@ -63,30 +64,21 @@
 
 &soft_off { hold-time-ms = <2000>; };
 
-// -------------------------------------------------------------------------
-// DEFINITIONS
-// -------------------------------------------------------------------------
-
+// Hardcoded, on updating the keymap, the sides have to be adjusted accordingly
 #define LEFT_CHARS B Y O U Q C I E A Z
 #define LEFT_SYMBS SLASH BACKSLASH MINUS UNDERSCORE COMMA ASTERISK DOT DOUBLE_QUOTES CARET DOLLAR AMPERSAND SEMICOLON HASH AT_SIGN QUESTION PIPE EXCLAMATION PERCENT EQUAL ESCAPE
 #define RIGHT_CHARS J L D W V K H T N S X M G P F
 #define RIGHT_SYMBS TILDE COLON LEFT_BRACKET LESS_THAN SINGLE_QUOTE GRAVE PLUS LEFT_PARENTHESIS LEFT_BRACE RIGHT_BRACKET GREATER_THAN RIGHT_PARENTHESIS RIGHT_BRACE
 #define NUM_CHARS N0 N1 N2 N3 N4 N5 N6 N7 N8 N9
-
 #define ADAPTIVE_RESET 1200
 #define COMBO_TERM_FAST 30
 #define COMBO_TERM_SLOW 250
 #define COMBO_IDLE_FAST 30
 #define COMBO_IDLE_SLOW 150
-
-// -------------------------------------------------------------------------
-// BEHAVIORS
-// -------------------------------------------------------------------------
-
 #define SHIFT_MORPH(NAME, BINDING1, BINDING2) \
     ZMK_MOD_MORPH(NAME, bindings = <BINDING1>, <BINDING2>; mods = <(MOD_LSFT|MOD_RSFT)>;)
 
-#define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS)                          \
+#define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS)                                  \
     ZMK_HOLD_TAP( NAME, bindings = <HOLD>, <TAP>; flavor = "balanced";          \
                     tapping-term-ms = <200>; quick-tap-ms = <QUICK_TAP_MS>;     \
                     require-prior-idle-ms = <150>;                              \
@@ -99,14 +91,14 @@ MAKE_HRM(hml, &kp, &kp, KEYS_R KEYS_T)
 
 #define RUNE_L &hm_rune_l LSHIFT 0
     ZMK_MOD_MORPH(rune_l, bindings = <&sk LSHIFT>, <&arc_left>; mods = <(MOD_LSFT|MOD_RSFT)>;)
-    MAKE_HRM(hm_rune_l, &kp, &rune_l, KEYS_R KEYS_L KEYS_T_R) 
+    MAKE_HRM(hm_rune_l, &kp, &rune_l, KEYS_R KEYS_L KEYS_T_R) // Tap mod, hold runic left
     ZMK_ADAPTIVE_KEY(arc_left, bindings = <&key_repeat>;
         spc_sft {bindings = <&sk LSHIFT>; trigger-keys = <SPACE>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
     )
 
 #define RUNE_R &hm_rune_r RSHIFT 0
     ZMK_MOD_MORPH(rune_r, bindings = <&sk RSHIFT>, <&arc_right>; mods = <(MOD_LSFT|MOD_RSFT)>;)
-    MAKE_HRM(hm_rune_r, &kp, &rune_r, KEYS_L KEYS_R KEYS_T_L) 
+    MAKE_HRM(hm_rune_r, &kp, &rune_r, KEYS_L KEYS_R KEYS_T_L) // Tap mod, hold runic right
     ZMK_ADAPTIVE_KEY(arc_right, bindings = <&key_repeat>;
         spc_sft {bindings = <&sk RSHIFT>; trigger-keys = <SPACE>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
     )
@@ -117,138 +109,32 @@ MAKE_HRM(hml, &kp, &kp, KEYS_R KEYS_T)
 #define STICKY_R &sticky_r RSHIFT RSHIFT
     MAKE_HRM(sticky_r, &sk, &kp, KEYS_L KEYS_T_L)
 
-// -------------------------------------------------------------------------
-// MAGIC KEYS & SPACE REPEAT
-// -------------------------------------------------------------------------
+// always presses the key above, wraps around
+#define L_MAGIC
 
-// --- L_MAGIC (Key Above / Upward Cycle) ---
-// Sequence: Z->A, A->Q, Q->Z ...
-#define L_MAGIC &za
-    ZMK_ADAPTIVE_KEY(za, bindings = <&none>; 
-        za {bindings = <&kp A>; trigger-keys = <&kp Z>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        aq {bindings = <&kp Q>; trigger-keys = <&kp A>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        qz {bindings = <&kp Z>; trigger-keys = <&kp Q>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-
-        xs {bindings = <&kp S>; trigger-keys = <&kp X>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        sw {bindings = <&kp W>; trigger-keys = <&kp S>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        wx {bindings = <&kp X>; trigger-keys = <&kp W>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-
-        cd {bindings = <&kp D>; trigger-keys = <&kp C>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        de {bindings = <&kp E>; trigger-keys = <&kp D>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        ec {bindings = <&kp C>; trigger-keys = <&kp E>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-
-        vf {bindings = <&kp F>; trigger-keys = <&kp V>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        fr {bindings = <&kp R>; trigger-keys = <&kp F>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        rv {bindings = <&kp V>; trigger-keys = <&kp R>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-
-        bg {bindings = <&kp G>; trigger-keys = <&kp B>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        gt {bindings = <&kp T>; trigger-keys = <&kp G>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        tb {bindings = <&kp B>; trigger-keys = <&kp T>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-
-        nh {bindings = <&kp H>; trigger-keys = <&kp N>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        hy {bindings = <&kp Y>; trigger-keys = <&kp H>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        yn {bindings = <&kp N>; trigger-keys = <&kp Y>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-
-        mj {bindings = <&kp J>; trigger-keys = <&kp M>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        ju {bindings = <&kp U>; trigger-keys = <&kp J>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        um {bindings = <&kp M>; trigger-keys = <&kp U>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-
-        ck {bindings = <&kp K>; trigger-keys = <&kp COMMA>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        ki {bindings = <&kp I>; trigger-keys = <&kp K>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        ic {bindings = <&kp COMMA>; trigger-keys = <&kp I>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-
-        dl {bindings = <&kp L>; trigger-keys = <&kp DOT>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        lo {bindings = <&kp O>; trigger-keys = <&kp L>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        od {bindings = <&kp DOT>; trigger-keys = <&kp O>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-
-        fs {bindings = <&kp SEMI>; trigger-keys = <&kp FSLH>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        sp {bindings = <&kp P>; trigger-keys = <&kp SEMI>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        pf {bindings = <&kp FSLH>; trigger-keys = <&kp P>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+// always presses the key below, wraps around
+// add the keys below for each character
+#define R_MAGIC
+    ZMK_ADAPTIVE_KEY(r_spacerep, bindings = <&kp SPACE>;
+        az {bindings = <&kp Z>; trigger-keys = <A>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        // spc_ {bindings = <&sk LSHIFT>; trigger-keys = <SPACE>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
     )
 
-// --- R_MAGIC (Key Below / Downward Cycle) ---
-// Sequence: Q->A, A->Z, Z->Q ...
-#define R_MAGIC &az
-    ZMK_ADAPTIVE_KEY(az, bindings = <&none>; 
-        qa {bindings = <&kp A>; trigger-keys = <&kp Q>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        az {bindings = <&kp Z>; trigger-keys = <&kp A>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        zq {bindings = <&kp Q>; trigger-keys = <&kp Z>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-
-        ws {bindings = <&kp S>; trigger-keys = <&kp W>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        sx {bindings = <&kp X>; trigger-keys = <&kp S>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        xw {bindings = <&kp W>; trigger-keys = <&kp X>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-
-        ed {bindings = <&kp D>; trigger-keys = <&kp E>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        dc {bindings = <&kp C>; trigger-keys = <&kp D>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        ce {bindings = <&kp E>; trigger-keys = <&kp C>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-
-        rf {bindings = <&kp F>; trigger-keys = <&kp R>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        fv {bindings = <&kp V>; trigger-keys = <&kp F>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        vr {bindings = <&kp R>; trigger-keys = <&kp V>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-
-        tg {bindings = <&kp G>; trigger-keys = <&kp T>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        gb {bindings = <&kp B>; trigger-keys = <&kp G>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        bt {bindings = <&kp T>; trigger-keys = <&kp B>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-
-        yh {bindings = <&kp H>; trigger-keys = <&kp Y>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        hn {bindings = <&kp N>; trigger-keys = <&kp H>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        ny {bindings = <&kp Y>; trigger-keys = <&kp N>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-
-        uj {bindings = <&kp J>; trigger-keys = <&kp U>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        jm {bindings = <&kp M>; trigger-keys = <&kp J>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        mu {bindings = <&kp U>; trigger-keys = <&kp M>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-
-        ik {bindings = <&kp K>; trigger-keys = <&kp I>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        kc {bindings = <&kp COMMA>; trigger-keys = <&kp K>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        ci {bindings = <&kp I>; trigger-keys = <&kp COMMA>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-
-        ol {bindings = <&kp L>; trigger-keys = <&kp O>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        ld {bindings = <&kp DOT>; trigger-keys = <&kp L>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        do {bindings = <&kp O>; trigger-keys = <&kp DOT>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-
-        ps {bindings = <&kp SEMI>; trigger-keys = <&kp P>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        sf {bindings = <&kp FSLH>; trigger-keys = <&kp SEMI>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        fp {bindings = <&kp P>; trigger-keys = <&kp FSLH>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-    )
-
-// --- L_SPACEREP (Left Space) ---
 #define L_SPACEREP &l_spacerep
     ZMK_ADAPTIVE_KEY(l_spacerep, bindings = <&kp SPACE>;
-        // If last key was RIGHT side -> Repeat
-        rep { 
-            bindings = <&key_repeat>; 
-            trigger-keys = <
-                &kp Y &kp U &kp I &kp O &kp P 
-                &kp H &kp J &kp K &kp L &kp SEMI &kp APOS
-                &kp N &kp M &kp COMMA &kp DOT &kp FSLH 
-                &kp RSHIFT &kp RCTRL &kp RALT &kp RGUI &kp LBKT &kp RBKT
-            >; 
-            max-prior-idle-ms = <ADAPTIVE_RESET>; 
-        };
+        rep {bindings = <&key_repeat>; trigger-keys = <all right keys>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
         spc_sft {bindings = <&sk LSHIFT>; trigger-keys = <SPACE>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
     )
 
-// --- R_SPACEREP (Right Space) ---
 #define R_SPACEREP &r_spacerep
     ZMK_ADAPTIVE_KEY(r_spacerep, bindings = <&kp SPACE>;
-        // If last key was LEFT side -> Repeat
-        rep { 
-            bindings = <&key_repeat>; 
-            trigger-keys = <
-                &kp Q &kp W &kp E &kp R &kp T 
-                &kp A &kp S &kp D &kp F &kp G 
-                &kp Z &kp X &kp C &kp V &kp B 
-                &kp LSHIFT &kp LCTRL &kp LALT &kp LGUI
-            >; 
-            max-prior-idle-ms = <ADAPTIVE_RESET>; 
-        };
+        rep {bindings = <&key_repeat>; trigger-keys = <all left keys>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
         spc_sft {bindings = <&sk LSHIFT>; trigger-keys = <SPACE>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
     )
 
-// -------------------------------------------------------------------------
-// COMBOS
-// -------------------------------------------------------------------------
+//ellentetes repeat ugyanaz meg space
 
+// function combos
 ZMK_COMBO(f12_combo, &kp F12, LN5 LT5, L_DEF L_GAME, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 ZMK_COMBO(f1_combo,  &kp F1,  LN4 LT4, L_DEF L_GAME, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 ZMK_COMBO(f2_combo,  &kp F2,  LN3 LT4, L_DEF L_GAME, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
@@ -262,9 +148,22 @@ ZMK_COMBO(f9_combo,  &kp F9,  RN3 RT3, L_DEF L_GAME, COMBO_TERM_SLOW, COMBO_IDLE
 ZMK_COMBO(f10_combo, &kp F10, RN4 RT4, L_DEF L_GAME, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 ZMK_COMBO(f11_combo, &kp F11, RN5 RT5, L_DEF L_GAME, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 
+// ZMK_COMBO(lbkt_combo,   &kp LBKT,  LT3 LM3, L_GAME, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+// ZMK_COMBO(rbkt_combo,   &kp RBKT,  LT2 LM2, L_GAME, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+// // ZMK_COMBO(apos_combo,   &kp APOS,  LT1 LM1, L_GAME, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+// ZMK_COMBO(bslh_combo,   &kp BSLH,  LT1 LM1, L_GAME, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+
+// ZMK_COMBO(grave_combo,  &kp GRAVE, LM2 LB2, L_GAME, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+// ZMK_COMBO(equal_combo,   &kp EQUAL, LM1 LB1, L_GAME, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+
+//ZMK_COMBO(enter_combo, &kp ENTER,       LB3 LB2, L_DEF,         COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+//ZMK_COMBO(tab_combo, &kp TAB,           LB2 LB1, L_DEF,         COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+
+
 ZMK_COMBO(pscrn_combo, &kp PSCRN,       LM5 LB5, L_DEF L_GAME,  COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 ZMK_COMBO(caps_combo,  &kp CAPS,        LM4 LT4, L_DEF,         COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 ZMK_COMBO(redo_combo,  &kp LS(Y),       LB4 LM4, L_DEF L_GAME,  COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+// ZMK_COMBO(undo_combo,  &kp LS(Z),       LB3 LM3, L_DEF L_GAME,  COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 ZMK_COMBO(cut_combo,   &kp LC(X),       LB3 LM3, L_DEF L_GAME,  COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 ZMK_COMBO(enter_combo, &kp ENTER,       LB2 LM2, L_DEF,         COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 ZMK_COMBO(tab_combo,   &kp TAB,         LB1 LM1, L_DEF,         COMBO_TERM_SLOW, COMBO_IDLE_FAST)
@@ -281,7 +180,6 @@ ZMK_COMBO(home_combo,  &kp HOME,        RM0 RB0, L_DEF L_GAME,  COMBO_TERM_SLOW,
 ZMK_COMBO(pgdn_combo,  &kp PGDN,        RM1 RB1, L_DEF L_GAME,  COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 ZMK_COMBO(pgup_combo,  &kp PGUP,        RM2 RB2, L_DEF L_GAME,  COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 ZMK_COMBO(end_combo,   &kp END,         RM3 RB3, L_DEF L_GAME,  COMBO_TERM_SLOW, COMBO_IDLE_FAST)
-
 
 / {
     scroll_encoder: scroll_encoder { compatible = "zmk,behavior-sensor-rotate"; #sensor-binding-cells = <0>;
@@ -300,7 +198,7 @@ ZMK_COMBO(end_combo,   &kp END,         RM3 RB3, L_DEF L_GAME,  COMBO_TERM_SLOW,
         };
     };
 
-    keymap { 
+    keymap { // esc, opt, &mo L_MOU
         compatible = "zmk,keymap";
 
         L_DEF { sensor-bindings = <&scroll_encoder>; display-name = "Default Layer"; bindings = < 
@@ -313,7 +211,7 @@ ZMK_COMBO(end_combo,   &kp END,         RM3 RB3, L_DEF L_GAME,  COMBO_TERM_SLOW,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     &kp EQUAL     &hml Z LALT   &hml X LCTL   &hml C LGUI   &hml V LSFT   &kp B      &kp RIGHT_ARROW &kp N      &hmr M RSFT &hmr COMMA RGUI &hmr DOT RCTL &hmr FSLH RALT &kp RBKT
 //╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────╯
-    &kp C_MUTE    &kp A         &kp A         &kp A         L_MAGIC       L_SPACEREP    &kp ENTER  R_SPACEREP    R_MAGIC       &kp A         &kp A         &kp A
+    &kp C_MUTE    &kp A         &kp A         &kp A&        L_MAGIC       L_SPACEREP    &kp ENTER  R_SPACEREP    R_MAGIC       &kp A         &kp A         &kp A
 //              ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯          ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
             >;
         };
@@ -344,13 +242,26 @@ ZMK_COMBO(end_combo,   &kp END,         RM3 RB3, L_DEF L_GAME,  COMBO_TERM_SLOW,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤        ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     &trans        &trans        &trans        &trans        &trans        &trans        &trans   &trans        &trans        &trans        &trans        &trans        &trans
 //╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤        ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────╯
-    &trans        &trans        &trans        &trans        &trans        &trans        &trans   &trans        &trans        &trans        &trans        &trans        &trans
+    &trans        &trans        &trans        &trans        &trans        &trans        &trans   &trans        &trans        &trans        &trans        &trans
 //              ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯        ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
             >;
 
             display-name = "Mouse Layer";
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;
         };
+
+//         L_MOU {
+//             bindings = <
+// &kp GRAVE   &kp F1           &kp F2          &kp F3           &kp F4           &kp F5             &mmv MOVE_UP     &kp F6           &kp F7           &kp F8      &kp F9     &kp F10           &trans
+// &trans      &kp GRAVE        &mkp LCLK       &mkp MCLK        &mkp RCLK        &mkp MB4           &mmv MOVE_DOWN   &kp PG_UP        &kp END          &kp UP      &kp HOME   &kp MINUS         &kp EQUAL
+// &trans      &kp TILDE        &trans          &trans           &trans           &mkp MB5           &mmv MOVE_LEFT   &kp PG_DN        &kp LEFT         &kp DOWN    &kp RIGHT  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
+// &trans      &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &rgb_ug RGB_EFF  &rgb_ug RGB_EFR  &rgb_ug RGB_SPI    &mmv MOVE_RIGHT  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &kp INSERT  &kp F11    &kp F12           &trans
+// &kp C_MUTE  &trans           &trans          &trans           &trans           &trans             &mkp LCLK        &trans           &trans           &trans      &trans     &trans
+//             >;
+
+//             display-name = "layer1";
+//             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;
+//         };
 
         L_OPT { sensor-bindings = <&scroll_encoder>; display-name = "OPTIONS"; bindings = <
 //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮        ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
@@ -362,7 +273,7 @@ ZMK_COMBO(end_combo,   &kp END,         RM3 RB3, L_DEF L_GAME,  COMBO_TERM_SLOW,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤        ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     &trans       &bt BT_CLR_ALL &bt BT_CLR    &out OUT_USB  &out OUT_BLE  &bootloader   &trans   &bootloader   &trans        &trans        &trans        &trans        &trans
 //╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤        ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────╯
-    &trans        &trans        &trans        &trans        &trans        &trans        &trans   &trans        &trans        &trans        &trans        &trans        &trans
+    &trans        &trans        &trans        &trans        &trans        &trans        &trans   &trans        &trans        &trans        &trans        &trans
 //              ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯        ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
         >;};
 
