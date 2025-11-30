@@ -94,8 +94,14 @@
                     hold-trigger-on-release;                                    \
                 )
 MAKE_HRM(hmt, &mo, &kp, KEYS_R KEYS_L KEYS_T)
-MAKE_HRM(hmr, &kp, &kp, KEYS_L KEYS_T)
+
 MAKE_HRM(hml, &kp, &kp, KEYS_R KEYS_T)
+MAKE_HRM(hrr, &mo, &kp, KEYS_R KEYS_T)
+
+MAKE_HRM(hmr, &kp, &kp, KEYS_L KEYS_T)
+MAKE_HRM(hlr, &mo, &kp, KEYS_L KEYS_T)
+
+
 
 #define RUNE_L &hm_rune_l LSHIFT 0
     ZMK_MOD_MORPH(rune_l, bindings = <&sk LSHIFT>, <&arc_left>; mods = <(MOD_LSFT|MOD_RSFT)>;)
@@ -123,7 +129,7 @@ MAKE_HRM(hml, &kp, &kp, KEYS_R KEYS_T)
 
 // --- L_MAGIC (Key Above / Upward Cycle) ---
 // Sequence: Z->A, A->Q, Q->Z ...
-#define L_MAGIC &za
+#define L_MAGIC &mt LGUI &l_magic
     ZMK_ADAPTIVE_KEY(za, bindings = <&none>; 
         za {bindings = <&kp A>; trigger-keys = <Z>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
         aq {bindings = <&kp Q>; trigger-keys = <A>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
@@ -168,7 +174,7 @@ MAKE_HRM(hml, &kp, &kp, KEYS_R KEYS_T)
 
 // --- R_MAGIC (Key Below / Downward Cycle) ---
 // Sequence: Q->A, A->Z, Z->Q ...
-#define R_MAGIC &az
+#define R_MAGIC &mt RGUI &r_magic
     ZMK_ADAPTIVE_KEY(az, bindings = <&none>; 
         qa {bindings = <&kp A>; trigger-keys = <Q>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
         az {bindings = <&kp Z>; trigger-keys = <A>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
