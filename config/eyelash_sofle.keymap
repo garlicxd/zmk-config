@@ -125,90 +125,90 @@ MAKE_HRM(hml, &kp, &kp, KEYS_R KEYS_T)
 // Sequence: Z->A, A->Q, Q->Z ...
 #define L_MAGIC &za
     ZMK_ADAPTIVE_KEY(za, bindings = <&none>; 
-        za {bindings = <&kp A>; trigger-keys = <&kp Z>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        aq {bindings = <&kp Q>; trigger-keys = <&kp A>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        qz {bindings = <&kp Z>; trigger-keys = <&kp Q>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        za {bindings = <&kp A>; trigger-keys = <Z>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        aq {bindings = <&kp Q>; trigger-keys = <A>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        qz {bindings = <&kp Z>; trigger-keys = <Q>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
 
-        xs {bindings = <&kp S>; trigger-keys = <&kp X>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        sw {bindings = <&kp W>; trigger-keys = <&kp S>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        wx {bindings = <&kp X>; trigger-keys = <&kp W>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        xs {bindings = <&kp S>; trigger-keys = <X>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        sw {bindings = <&kp W>; trigger-keys = <S>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        wx {bindings = <&kp X>; trigger-keys = <W>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
 
-        cd {bindings = <&kp D>; trigger-keys = <&kp C>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        de {bindings = <&kp E>; trigger-keys = <&kp D>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        ec {bindings = <&kp C>; trigger-keys = <&kp E>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        cd {bindings = <&kp D>; trigger-keys = <C>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        de {bindings = <&kp E>; trigger-keys = <D>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        ec {bindings = <&kp C>; trigger-keys = <E>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
 
-        vf {bindings = <&kp F>; trigger-keys = <&kp V>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        fr {bindings = <&kp R>; trigger-keys = <&kp F>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        rv {bindings = <&kp V>; trigger-keys = <&kp R>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        vf {bindings = <&kp F>; trigger-keys = <V>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        fr {bindings = <&kp R>; trigger-keys = <F>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        rv {bindings = <&kp V>; trigger-keys = <R>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
 
-        bg {bindings = <&kp G>; trigger-keys = <&kp B>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        gt {bindings = <&kp T>; trigger-keys = <&kp G>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        tb {bindings = <&kp B>; trigger-keys = <&kp T>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        bg {bindings = <&kp G>; trigger-keys = <B>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        gt {bindings = <&kp T>; trigger-keys = <G>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        tb {bindings = <&kp B>; trigger-keys = <T>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
 
-        nh {bindings = <&kp H>; trigger-keys = <&kp N>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        hy {bindings = <&kp Y>; trigger-keys = <&kp H>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        yn {bindings = <&kp N>; trigger-keys = <&kp Y>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        nh {bindings = <&kp H>; trigger-keys = <N>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        hy {bindings = <&kp Y>; trigger-keys = <H>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        yn {bindings = <&kp N>; trigger-keys = <Y>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
 
-        mj {bindings = <&kp J>; trigger-keys = <&kp M>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        ju {bindings = <&kp U>; trigger-keys = <&kp J>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        um {bindings = <&kp M>; trigger-keys = <&kp U>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        mj {bindings = <&kp J>; trigger-keys = <M>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        ju {bindings = <&kp U>; trigger-keys = <J>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        um {bindings = <&kp M>; trigger-keys = <U>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
 
-        ck {bindings = <&kp K>; trigger-keys = <&kp COMMA>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        ki {bindings = <&kp I>; trigger-keys = <&kp K>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        ic {bindings = <&kp COMMA>; trigger-keys = <&kp I>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        ck {bindings = <&kp K>; trigger-keys = <COMMA>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        ki {bindings = <&kp I>; trigger-keys = <K>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        ic {bindings = <&kp COMMA>; trigger-keys = <I>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
 
-        dl {bindings = <&kp L>; trigger-keys = <&kp DOT>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        lo {bindings = <&kp O>; trigger-keys = <&kp L>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        od {bindings = <&kp DOT>; trigger-keys = <&kp O>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        dl {bindings = <&kp L>; trigger-keys = <DOT>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        lo {bindings = <&kp O>; trigger-keys = <L>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        od {bindings = <&kp DOT>; trigger-keys = <O>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
 
-        fs {bindings = <&kp SEMI>; trigger-keys = <&kp FSLH>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        sp {bindings = <&kp P>; trigger-keys = <&kp SEMI>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        pf {bindings = <&kp FSLH>; trigger-keys = <&kp P>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        fs {bindings = <&kp SEMI>; trigger-keys = <FSLH>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        sp {bindings = <&kp P>; trigger-keys = <SEMI>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        pf {bindings = <&kp FSLH>; trigger-keys = <P>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
     )
 
 // --- R_MAGIC (Key Below / Downward Cycle) ---
 // Sequence: Q->A, A->Z, Z->Q ...
 #define R_MAGIC &az
     ZMK_ADAPTIVE_KEY(az, bindings = <&none>; 
-        qa {bindings = <&kp A>; trigger-keys = <&kp Q>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        az {bindings = <&kp Z>; trigger-keys = <&kp A>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        zq {bindings = <&kp Q>; trigger-keys = <&kp Z>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        qa {bindings = <&kp A>; trigger-keys = <Q>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        az {bindings = <&kp Z>; trigger-keys = <A>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        zq {bindings = <&kp Q>; trigger-keys = <Z>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
 
-        ws {bindings = <&kp S>; trigger-keys = <&kp W>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        sx {bindings = <&kp X>; trigger-keys = <&kp S>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        xw {bindings = <&kp W>; trigger-keys = <&kp X>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        ws {bindings = <&kp S>; trigger-keys = <W>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        sx {bindings = <&kp X>; trigger-keys = <S>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        xw {bindings = <&kp W>; trigger-keys = <X>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
 
-        ed {bindings = <&kp D>; trigger-keys = <&kp E>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        dc {bindings = <&kp C>; trigger-keys = <&kp D>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        ce {bindings = <&kp E>; trigger-keys = <&kp C>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        ed {bindings = <&kp D>; trigger-keys = <E>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        dc {bindings = <&kp C>; trigger-keys = <D>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        ce {bindings = <&kp E>; trigger-keys = <C>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
 
-        rf {bindings = <&kp F>; trigger-keys = <&kp R>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        fv {bindings = <&kp V>; trigger-keys = <&kp F>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        vr {bindings = <&kp R>; trigger-keys = <&kp V>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        rf {bindings = <&kp F>; trigger-keys = <R>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        fv {bindings = <&kp V>; trigger-keys = <F>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        vr {bindings = <&kp R>; trigger-keys = <V>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
 
-        tg {bindings = <&kp G>; trigger-keys = <&kp T>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        gb {bindings = <&kp B>; trigger-keys = <&kp G>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        bt {bindings = <&kp T>; trigger-keys = <&kp B>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        tg {bindings = <&kp G>; trigger-keys = <T>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        gb {bindings = <&kp B>; trigger-keys = <G>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        bt {bindings = <&kp T>; trigger-keys = <B>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
 
-        yh {bindings = <&kp H>; trigger-keys = <&kp Y>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        hn {bindings = <&kp N>; trigger-keys = <&kp H>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        ny {bindings = <&kp Y>; trigger-keys = <&kp N>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        yh {bindings = <&kp H>; trigger-keys = <Y>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        hn {bindings = <&kp N>; trigger-keys = <H>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        ny {bindings = <&kp Y>; trigger-keys = <N>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
 
-        uj {bindings = <&kp J>; trigger-keys = <&kp U>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        jm {bindings = <&kp M>; trigger-keys = <&kp J>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        mu {bindings = <&kp U>; trigger-keys = <&kp M>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        uj {bindings = <&kp J>; trigger-keys = <U>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        jm {bindings = <&kp M>; trigger-keys = <J>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        mu {bindings = <&kp U>; trigger-keys = <M>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
 
-        ik {bindings = <&kp K>; trigger-keys = <&kp I>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        kc {bindings = <&kp COMMA>; trigger-keys = <&kp K>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        ci {bindings = <&kp I>; trigger-keys = <&kp COMMA>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        ik {bindings = <&kp K>; trigger-keys = <I>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        kc {bindings = <&kp COMMA>; trigger-keys = <K>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        ci {bindings = <&kp I>; trigger-keys = <COMMA>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
 
-        ol {bindings = <&kp L>; trigger-keys = <&kp O>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        ld {bindings = <&kp DOT>; trigger-keys = <&kp L>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        do {bindings = <&kp O>; trigger-keys = <&kp DOT>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        ol {bindings = <&kp L>; trigger-keys = <O>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        ld {bindings = <&kp DOT>; trigger-keys = <L>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        do {bindings = <&kp O>; trigger-keys = <DOT>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
 
-        ps {bindings = <&kp SEMI>; trigger-keys = <&kp P>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        sf {bindings = <&kp FSLH>; trigger-keys = <&kp SEMI>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
-        fp {bindings = <&kp P>; trigger-keys = <&kp FSLH>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        ps {bindings = <&kp SEMI>; trigger-keys = <P>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        sf {bindings = <&kp FSLH>; trigger-keys = <SEMI>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
+        fp {bindings = <&kp P>; trigger-keys = <FSLH>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
     )
 
 // --- L_SPACEREP (Left Space) ---
@@ -218,10 +218,10 @@ MAKE_HRM(hml, &kp, &kp, KEYS_R KEYS_T)
         rep { 
             bindings = <&key_repeat>; 
             trigger-keys = <
-                &kp Y &kp U &kp I &kp O &kp P 
-                &kp H &kp J &kp K &kp L &kp SEMI &kp APOS
-                &kp N &kp M &kp COMMA &kp DOT &kp FSLH 
-                &kp RSHIFT &kp RCTRL &kp RALT &kp RGUI &kp LBKT &kp RBKT
+                Y U I O P 
+                H J K L SEMI APOS
+                N M COMMA DOT FSLH 
+                RSHIFT RCTRL RALT RGUI LBKT RBKT
             >; 
             max-prior-idle-ms = <ADAPTIVE_RESET>; 
         };
@@ -235,10 +235,10 @@ MAKE_HRM(hml, &kp, &kp, KEYS_R KEYS_T)
         rep { 
             bindings = <&key_repeat>; 
             trigger-keys = <
-                &kp Q &kp W &kp E &kp R &kp T 
-                &kp A &kp S &kp D &kp F &kp G 
-                &kp Z &kp X &kp C &kp V &kp B 
-                &kp LSHIFT &kp LCTRL &kp LALT &kp LGUI
+                Q W E R T 
+                A S D F G 
+                Z X C V B 
+                LSHIFT LCTRL LALT LGUI
             >; 
             max-prior-idle-ms = <ADAPTIVE_RESET>; 
         };
