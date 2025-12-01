@@ -317,7 +317,7 @@ ZMK_COMBO(end_combo,   &kp END,         RM3 RB3, L_DEF L_GAME,  COMBO_TERM_SLOW,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     &kp MINUS     &kp A         &kp S         &kp D         &kp F         &kp G      &kp LEFT_ARROW &kp H        &kp J         &kp K         &kp L         &kp SEMI      &kp LBKT
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &kp GRAVE     &hml Z LALT   &hml X LCTL   &hml C LGUI   &hml V LSFT   &kp B      &kp RIGHT_ARROW &kp N      &hmr M RSFT &hmr COMMA RGUI &hmr DOT RCTL &hmr FSLH RALT &kp RBKT
+    &kp GRAVE     &hml LALT Z   &hml LCTL X   &hml LGUI C   &hml LSFT V   &kp B      &kp RIGHT_ARROW &kp N      &hmr RSFT M  &hmr RGUI COMMA &hmr RCTL DOT &hmr RALT FSLH &kp RBKT
 //╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────╯
     &kp C_MUTE    &mo L_OPT     &kp A         &kp TAB       &mt LGUI ESC  &kp SPACE    &kp ENTER   &kp SPACE     &kp ENTER   &lt L_MOU BSLH  &kp A         &kp A
 //              ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯          ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
