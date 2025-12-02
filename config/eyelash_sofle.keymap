@@ -175,7 +175,7 @@ MAKE_HRM(hlr, &mo, &kp, KEYS_L KEYS_T)
 // --- R_MAGIC (Key Below / Downward Cycle) ---
 // Sequence: Q->A, A->Z, Z->Q ...
 #define R_MAGIC &mt RGUI &r_magic
-    ZMK_ADAPTIVE_KEY(az, bindings = <&none>; 
+    ZMK_ADAPTIVE_KEY(r_magic, bindings = <&none>; 
         qa {bindings = <&kp A>; trigger-keys = <Q>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
         az {bindings = <&kp Z>; trigger-keys = <A>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
         zq {bindings = <&kp Q>; trigger-keys = <Z>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
@@ -269,14 +269,14 @@ ZMK_COMBO(f10_combo, &kp F10, RN4 RT4, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 ZMK_COMBO(f11_combo, &kp F11, RN5 RT5, L_DEF, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 
 ZMK_COMBO(caps_combo,  &kp CAPS,        LM4 LT4, L_DEF,         COMBO_TERM_SLOW, COMBO_IDLE_FAST)
-ZMK_COMBO(capsw_combo, &caps_word,      LM1 LT1, L_DEF,         COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 //ZMK_COMBO(esc_combo,   &kp ESC,         LM1 LT1, L_DEF,         COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(enter_combo, &kp ENTER,       LM2 LT2, L_DEF,         COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(tab_combo,   &kp TAB,         LM1 LT1, L_DEF,         COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 
 ZMK_COMBO(pscrn_combo, &kp PSCRN,       LM5 LB5, L_DEF L_GAME,  COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 ZMK_COMBO(redo_combo,  &kp LC(Y),       LB4 LM4, L_DEF L_GAME,  COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 ZMK_COMBO(cut_combo,   &kp LC(X),       LB3 LM3, L_DEF L_GAME,  COMBO_TERM_SLOW, COMBO_IDLE_FAST)
-ZMK_COMBO(enter_combo, &kp ENTER,       LB2 LM2, L_DEF,         COMBO_TERM_SLOW, COMBO_IDLE_FAST)
-ZMK_COMBO(tab_combo,   &kp TAB,         LB1 LM1, L_DEF,         COMBO_TERM_SLOW, COMBO_IDLE_FAST)
+ZMK_COMBO(capsw_combo, &caps_word,      LB1 LM1, L_DEF,         COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 
 ZMK_COMBO(left_combo,  &kp LEFT_ARROW,  RT0 RM0, L_DEF L_GAME,  COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 ZMK_COMBO(down_combo,  &kp DOWN_ARROW,  RT1 RM1, L_DEF L_GAME,  COMBO_TERM_SLOW, COMBO_IDLE_FAST)
