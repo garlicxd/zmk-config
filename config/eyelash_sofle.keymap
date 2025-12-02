@@ -315,9 +315,9 @@ ZMK_COMBO(end_combo,   &kp END,         RM3 RB3, L_DEF L_GAME,  COMBO_TERM_SLOW,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     &kp EQUAL     &kp Q         &kp W         &kp E         &kp R         &kp T      &kp DOWN_ARROW &kp Y        &kp U         &kp I         &kp O         &kp P         &kp APOS
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &kp MINUS     &hml LALT Z   &hml LCTL X   &hml LGUI C   &hml LSFT V   &kp G      &kp LEFT_ARROW &kp H        &hmr RSFT M  &hmr RGUI COMMA &hmr RCTL DOT &hmr RALT FSLH &kp LBKT
+    &kp MINUS     &hml LALT A   &hml LCTL S   &hml LGUI D   &hml LSFT F   &kp G      &kp LEFT_ARROW &kp H        &hmr RSFT J  &hmr RGUI K     &hmr RCTL L  &hmr RALT SEMI &kp LBKT
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &kp ESC       &kp S         &kp D         &kp F         &kp B      &kp RIGHT_ARROW &kp N        &kp J        &kp K         &kp L         &kp SEMI      &kp RBKT
+    &kp ESC       &kp Z         &kp X         &kp C         &kp V         &kp B      &kp RIGHT_ARROW &kp N        &kp M        &kp COMMA     &kp DOT       &kp FSLH      &kp RBKT
 //╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────╯
     &kp C_MUTE    &mo L_OPT     &kp A         &kp GRAVE     &kp TAB       &kp SPACE     &kp ENTER  &kp SPACE     &kp ENTER     R_MAGIC     &lt L_MOU BSLH  &kp A         &kp A
 //              ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯          ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
