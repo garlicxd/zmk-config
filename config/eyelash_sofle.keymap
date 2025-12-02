@@ -317,9 +317,9 @@ ZMK_COMBO(end_combo,   &kp END,         RM3 RB3, L_DEF L_GAME,  COMBO_TERM_SLOW,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     &kp MINUS     &hml LALT Z   &hml LCTL X   &hml LGUI C   &hml LSFT V   &kp G      &kp LEFT_ARROW &kp H        &hmr RSFT M  &hmr RGUI COMMA &hmr RCTL DOT &hmr RALT FSLH &kp LBKT
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-    &kp ESC       &kp S         &kp D         &kp F         &kp B      &kp RIGHT_ARROW &kp N      &kp J        &kp K         &kp L         &kp SEMI      &kp RBKT
+    &kp ESC       &kp S         &kp D         &kp F         &kp B      &kp RIGHT_ARROW &kp N        &kp J        &kp K         &kp L         &kp SEMI      &kp RBKT
 //╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────╯
-    &kp C_MUTE    &mo L_OPT     &kp A         &kp GRAVE     L_MAGIC       L_SPACEREP    &kp ENTER  R_SPACEREP    R_MAGIC     &lt L_MOU BSLH  &kp A         &kp A
+    &kp C_MUTE    &mo L_OPT     &kp A         &kp GRAVE     &kp TAB       &kp SPACE     &kp ENTER  &kp SPACE     &kp ENTER     R_MAGIC     &lt L_MOU BSLH  &kp A         &kp A
 //              ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯          ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
             >;
         };
@@ -334,7 +334,7 @@ ZMK_COMBO(end_combo,   &kp END,         RM3 RB3, L_DEF L_GAME,  COMBO_TERM_SLOW,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     &kp LSFT      &kp Z         &kp X         &kp C         &kp V         &kp B      &kp RIGHT_ARROW &kp N       &kp M         &kp COMMA     &kp DOT       &kp FSLH      &kp RBKT
 //╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────╯
-    &kp C_MUTE    &trans        &trans        &kp TAB       &kp ESC       &kp SPACE    &kp ENTER   &kp SPACE     &kp ENTER     &trans        &trans        &trans
+    &kp C_MUTE    &trans        &trans        &kp ESC       &kp TAB       &kp SPACE    &kp ENTER   &kp SPACE     &kp ENTER     &trans        &trans        &trans
 //              ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯          ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
             >;
         };
