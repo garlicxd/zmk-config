@@ -130,7 +130,7 @@ MAKE_HRM(hlr, &mo, &kp, KEYS_L KEYS_T)
 // --- L_MAGIC (Key Above / Upward Cycle) ---
 // Sequence: Z->A, A->Q, Q->Z ...
 #define L_MAGIC &mt LGUI &l_magic
-    ZMK_ADAPTIVE_KEY(za, bindings = <&none>; 
+    ZMK_ADAPTIVE_KEY(l_magic, bindings = <&none>; 
         za {bindings = <&kp A>; trigger-keys = <Z>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
         aq {bindings = <&kp Q>; trigger-keys = <A>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
         qz {bindings = <&kp Z>; trigger-keys = <Q>; max-prior-idle-ms = <ADAPTIVE_RESET>;};
