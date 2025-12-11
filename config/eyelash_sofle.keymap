@@ -319,7 +319,7 @@ ZMK_COMBO(end_combo,   &kp END,         RM3 RB3, L_DEF L_GAME,  COMBO_TERM_SLOW,
 //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
     &kp ESC       &kp Z         &kp X         &kp C         &kp V         &kp B      &kp RIGHT_ARROW &kp N        &kp M        &kp COMMA     &kp DOT       &kp FSLH      &kp RBKT
 //╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤          ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────╯
-    &kp C_MUTE    &mo L_OPT     &kp A         &kp GRAVE     &kp TAB       &kp SPACE     &kp ENTER  &kp SPACE     &kp ENTER     R_MAGIC     &lt L_MOU BSLH  &kp A         &kp A
+    &kp C_MUTE    &mo L_OPT     &kp A         &kp GRAVE     &kp TAB       &kp SPACE     &kp ENTER  &kp SPACE     &kp ENTER     &kp BSLH      &kp A         &kp A
 //              ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯          ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
             >;
         };
